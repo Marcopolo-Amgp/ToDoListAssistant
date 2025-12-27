@@ -1,0 +1,108 @@
+/* Reset dasar */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body halaman */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Container utama */
+.container {
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 400px;
+    text-align: center;
+}
+
+/* Judul halaman */
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Input teks */
+input[type="text"], input[type="number"], input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+/* Tombol */
+button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* Hover tombol */
+button:hover {
+    background-color: #45a049;
+}
+
+/* Tabel untuk halaman index/read */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+table th, table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+table th {
+    background-color: #f2f2f2;
+}
+
+/* Pesan sukses / error */
+.message {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    color: #fff;
+}
+
+.message.success {
+    background-color: #4CAF50;
+}
+
+.message.error {
+    background-color: #f44336;
+}
+
+/* Link logout / action */
+a.action {
+    text-decoration: none;
+    color: #fff;
+    background-color: #f44336;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+a.action:hover {
+    background-color: #d32f2f;
+}
