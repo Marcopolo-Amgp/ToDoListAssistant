@@ -1,108 +1,105 @@
-/* Reset dasar */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
-
-/* Body halaman */
-body {
+    box-sizing: border-box;
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
 }
 
-/* Container utama */
+body {
+    background: #f4f6f8;
+    padding: 40px;
+}
+
+/* Container */
 .container {
-    background-color: #fff;
-    padding: 30px 40px;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    width: 400px;
-    text-align: center;
+    max-width: 800px;
+    margin: auto;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-/* Judul halaman */
-h1 {
+/* Header */
+h2 {
     margin-bottom: 20px;
     color: #333;
 }
 
-/* Input teks */
-input[type="text"], input[type="number"], input[type="password"] {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 14px;
+/* Links */
+a {
+    text-decoration: none;
+    color: #0066cc;
 }
 
-/* Tombol */
+a:hover {
+    text-decoration: underline;
+}
+
+/* Buttons */
 button {
-    width: 100%;
-    padding: 12px;
-    border-radius: 8px;
+    padding: 8px 14px;
     border: none;
-    background-color: #4CAF50;
-    color: white;
-    font-size: 16px;
+    border-radius: 4px;
+    background: #0066cc;
+    color: #fff;
     cursor: pointer;
-    transition: 0.2s;
 }
 
-/* Hover tombol */
 button:hover {
-    background-color: #45a049;
+    background: #004999;
 }
 
-/* Tabel untuk halaman index/read */
+/* Forms */
+form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input[type="text"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Table */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
-table th, table td {
-    border: 1px solid #ccc;
+table th,
+table td {
+    border: 1px solid #ddd;
     padding: 10px;
-    text-align: center;
 }
 
 table th {
-    background-color: #f2f2f2;
+    background: #f0f0f0;
 }
 
-/* Pesan sukses / error */
-.message {
-    margin-bottom: 15px;
-    padding: 10px;
-    border-radius: 8px;
-    color: #fff;
+/* Actions */
+.action a {
+    margin-right: 8px;
 }
 
-.message.success {
-    background-color: #4CAF50;
+/* Top menu */
+.top-bar {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.message.error {
-    background-color: #f44336;
-}
-
-/* Link logout / action */
-a.action {
-    text-decoration: none;
-    color: #fff;
-    background-color: #f44336;
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 14px;
-    transition: 0.2s;
-}
-
-a.action:hover {
-    background-color: #d32f2f;
+/* Confirmation */
+.confirm-box {
+    background: #fff3f3;
+    padding: 15px;
+    border: 1px solid #ffcccc;
+    border-radius: 4px;
 }
