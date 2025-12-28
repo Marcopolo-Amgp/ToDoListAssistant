@@ -1,3 +1,19 @@
+<?php
+require 'config/configuration.php';
+require 'class/todo.php';
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: auth/login.php");
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $todo = new Todo();
+    $todo->create($_POST, $_SESSION['user_id']);
+    header("Location: index.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -11,14 +27,15 @@
     <h2>Tambah ToDo</h2>
 
     <form>
-        <label>Judul</label><br>
-        <input type="text" placeholder="Masukkan judul ToDo"><br><br>
+        <form method="post">
+    <label>Judul</label>
+    <input type="text" name="title" required>
 
-        <label>Deskripsi</label><br>
-        <textarea rows="4" placeholder="Masukkan deskripsi ToDo"></textarea><br><br>
+    <label>Deskripsi</label>
+    <textarea name="description"></textarea>
 
-        <button>Simpan</button>
-    </form>
+    <button type="submit">Simpan</button>
+</form>
 
     <br>
     <a href="index.php">← Kembali</a>

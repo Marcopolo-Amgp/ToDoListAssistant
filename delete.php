@@ -1,3 +1,16 @@
+<?php
+require 'config/configuration.php';
+require 'class/todo.php';
+
+if (isset($_GET['id'])) {
+    $todo = new Todo();
+    $todo->delete($_GET['id']);
+}
+
+header("Location: index.php");
+exit;
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
