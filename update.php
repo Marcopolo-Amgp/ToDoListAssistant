@@ -1,12 +1,49 @@
+<?php
+require 'config/config.php';
+require 'class/Todo.php';
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: auth/login.php");
+    exit;
+}
+
+$todo = new Todo();
+$data = $todo->getById($_GET['id']);
+
+if (isset($_POST['submit'])) {
+    $todo->update($_POST);
+    header("Location: index.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List Assistant</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Edit Todo</title>
 </head>
 <body>
-    
+
+<h2>Edit Todo</h2>
+
+<form method="POST">
+    <input type="hidden" name="id" value="<?= $data['id'] ?>">
+
+    <label>Title</label><br>
+    <input type="text" name="title" value="<?= $data['title'] ?>" required><br><br>
+
+    <label>Description</label><br>
+    <textarea name="description"><?= $data['description'] ?></textarea><br><br>
+
+    <label>Status</label><br>
+    <select name="status">
+        <option value="pending" <?= $data['status']=='pending'?'selected':'' ?>>Pending</option>
+        <option value="completed" <?= $data['status']=='completed'?'selected':'' ?>>Completed</option>
+    </select><br><br>
+
+    <button type="submit" name="submit">Update</button>
+    <a href="index.php">Cancel</a>
+</form>
+
 </body>
 </html>
