@@ -1,39 +1,44 @@
 <?php
-require 'config/config.php';
-require 'class/Todo.php';
+require 'config/configuration.php';
+require 'class/todo.php';
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: auth/login.php");
     exit;
 }
 
-if (isset($_POST['submit'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $todo = new Todo();
     $todo->create($_POST, $_SESSION['user_id']);
     header("Location: index.php");
     exit;
 }
 ?>
-
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Add Todo</title>
+    <meta charset="UTF-8">
+    <title>Create ToDo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<h2>Add New Todo</h2>
+    <h2>Tambah ToDo</h2>
 
-<form method="POST">
-    <label>Title</label><br>
-    <input type="text" name="title" required><br><br>
+    <form>
+        <form method="post">
+    <label>Judul</label>
+    <input type="text" name="title" required>
 
-    <label>Description</label><br>
-    <textarea name="description"></textarea><br><br>
+    <label>Deskripsi</label>
+    <textarea name="description"></textarea>
 
-    <button type="submit" name="submit">Save</button>
-    <a href="index.php">Cancel</a>
+    <button type="submit">Simpan</button>
 </form>
+
+    <br>
+    <a href="index.php">← Kembali</a>
 
 </body>
 </html>
