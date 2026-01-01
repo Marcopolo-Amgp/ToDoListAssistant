@@ -27,6 +27,35 @@ class User extends Database {
         return false;
     }
 
+    /* REGISTER USER */
+public function register($data) {
+    // cek email sudah terdaftar atau belum
+    $check = $this->db->prepare(
+        "SELECT id FROM users WHERE email = :email"
+    );
+    $check->execute(['email' => $data['email']]);
+
+    if ($check->rowCount() > 0) {
+        return "Email already registered";
+    }
+
+    // hash password
+    $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
+
+    // insert user baru
+    $stmt = $this->db->prepare(
+        "INSERT INTO users (username, email, password)
+         VALUES (:username, :email, :password)"
+    );
+
+    return $stmt->execute([
+        'username' => $data['username'],
+        'email'    => $data['email'],
+        'password' => $hashedPassword
+    ]);
+}
+
+
     /* LOGOUT USER */
     public function logout() {
         session_destroy();
