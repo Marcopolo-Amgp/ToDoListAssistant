@@ -32,3 +32,4 @@ class User extends Database {
         session_destroy();
         return true;
     }
+}

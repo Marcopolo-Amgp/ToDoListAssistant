@@ -1,6 +1,6 @@
 <?php
-require 'config/config.php';
-require 'class/Todo.php';
+require 'config/configuration.php';
+require 'class/todo.php';
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: auth/login.php");

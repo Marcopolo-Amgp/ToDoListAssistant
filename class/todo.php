@@ -67,3 +67,4 @@ class Todo extends Database {
         );
         return $stmt->execute(['id' => $id]);
     }
+}
