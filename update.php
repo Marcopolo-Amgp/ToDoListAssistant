@@ -1,57 +1,48 @@
 <?php
-include 'koneksi.php';
+require 'config/config.php';
+require 'class/Todo.php';
 
-// Ambil ID dari URL
-$id = $_GET['id'];
+if (!isset($_SESSION['user_id'])) {
+    header("Location: auth/login.php");
+    exit;
+}
 
-// Ambil data lama
-$query = "SELECT * FROM tugas WHERE id = $id";
-$result = mysqli_query($conn, $query);
-$data = mysqli_fetch_assoc($result);
+$todo = new Todo();
+$data = $todo->getById($_GET['id']);
 
-// Proses update
-if (isset($_POST['update'])) {
-    $nama_tugas = $_POST['nama_tugas'];
-    $deskripsi  = $_POST['deskripsi'];
-    $status     = $_POST['status'];
-
-    $update = "UPDATE tugas 
-               SET nama_tugas='$nama_tugas',
-                   deskripsi='$deskripsi',
-                   status='$status'
-               WHERE id=$id";
-
-    if (mysqli_query($conn, $update)) {
-        header("Location: index.php");
-    } else {
-        echo "Gagal mengupdate data!";
-    }
+if (isset($_POST['submit'])) {
+    $todo->update($_POST);
+    header("Location: index.php");
+    exit;
 }
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Edit Tugas</title>
+    <title>Edit Todo</title>
 </head>
 <body>
 
-<h2>Edit Tugas</h2>
+<h2>Edit Todo</h2>
 
 <form method="POST">
-    <label>Nama Tugas</label><br>
-    <input type="text" name="nama_tugas" value="<?= $data['nama_tugas']; ?>" required><br><br>
+    <input type="hidden" name="id" value="<?= $data['id'] ?>">
 
-    <label>Deskripsi</label><br>
-    <textarea name="deskripsi" required><?= $data['deskripsi']; ?></textarea><br><br>
+    <label>Title</label><br>
+    <input type="text" name="title" value="<?= $data['title'] ?>" required><br><br>
+
+    <label>Description</label><br>
+    <textarea name="description"><?= $data['description'] ?></textarea><br><br>
 
     <label>Status</label><br>
     <select name="status">
-        <option value="Belum Selesai" <?= $data['status'] == 'Belum Selesai' ? 'selected' : '' ?>>Belum Selesai</option>
-        <option value="Selesai" <?= $data['status'] == 'Selesai' ? 'selected' : '' ?>>Selesai</option>
+        <option value="pending" <?= $data['status']=='pending'?'selected':'' ?>>Pending</option>
+        <option value="completed" <?= $data['status']=='completed'?'selected':'' ?>>Completed</option>
     </select><br><br>
 
-    <button type="submit" name="update">Update</button>
+    <button type="submit" name="submit">Update</button>
+    <a href="index.php">Cancel</a>
 </form>
 
 </body>
