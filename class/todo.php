@@ -13,7 +13,7 @@ class Todo extends Database {
     /* GET ALL TODOS BY USER */
     public function getAll($userId) {
         $stmt = $this->db->prepare(
-            "SELECT * FROM todos WHERE user_id = :user_id ORDER BY created_at DESC"
+            "SELECT * FROM todo WHERE user_id = :user_id ORDER BY created_at DESC"
         );
         $stmt->execute(['user_id' => $userId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -22,7 +22,7 @@ class Todo extends Database {
     /* GET TODO BY ID */
     public function getById($id) {
         $stmt = $this->db->prepare(
-            "SELECT * FROM todos WHERE id = :id"
+            "SELECT * FROM todo WHERE id = :id"
         );
         $stmt->execute(['id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -31,7 +31,7 @@ class Todo extends Database {
     /* CREATE TODO */
     public function create($data, $userId) {
         $stmt = $this->db->prepare(
-            "INSERT INTO todos (user_id, title, description)
+            "INSERT INTO todo (user_id, title, description)
              VALUES (:user_id, :title, :description)"
         );
 
@@ -45,7 +45,7 @@ class Todo extends Database {
     /* UPDATE TODO */
     public function update($data) {
         $stmt = $this->db->prepare(
-            "UPDATE todos
+            "UPDATE todo
              SET title = :title,
                  description = :description,
                  status = :status
@@ -63,7 +63,7 @@ class Todo extends Database {
     /* DELETE TODO */
     public function delete($id) {
         $stmt = $this->db->prepare(
-            "DELETE FROM todos WHERE id = :id"
+            "DELETE FROM todo WHERE id = :id"
         );
         return $stmt->execute(['id' => $id]);
     }
