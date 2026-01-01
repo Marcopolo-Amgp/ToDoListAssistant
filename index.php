@@ -1,6 +1,6 @@
 <?php
-require 'config/config.php';
-require 'class/Todo.php';
+require 'config/configuration.php';
+require 'class/todo.php';
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: auth/login.php");
@@ -38,6 +38,7 @@ $todos = $todo->getAll($_SESSION['user_id']);
         <td>
             <a href="update.php?id=<?= $t['id'] ?>">Edit</a> |
             <a href="delete.php?id=<?= $t['id'] ?>">Delete</a>
+            <a href="auth/logout.php" class="logout-link">Logout</a>
         </td>
     </tr>
     <?php endforeach; ?>
