@@ -1,44 +1,39 @@
-<?php
-require 'config/configuration.php';
-require 'class/todo.php';
-
-if (!isset($_SESSION['user_id'])) {
-    header("Location: auth/login.php");
-    exit;
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $todo = new Todo();
-    $todo->create($_POST, $_SESSION['user_id']);
-    header("Location: index.php");
-    exit;
-}
-?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <title>Create ToDo</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <h2>Tambah ToDo</h2>
 
-    <form>
-        <form method="post">
-    <label>Judul</label>
-    <input type="text" name="title" required>
+<div class="card">
+    <div class="page-header">
+        <h2>➕ Tambah ToDo</h2>
+        <a href="index.php" class="btn btn-secondary">← Kembali</a>
+    </div>
 
-    <label>Deskripsi</label>
-    <textarea name="description"></textarea>
 
-    <button type="submit">Simpan</button>
-</form>
+    <form method="POST" onsubmit="return validateTodo()">
+        <div class="form-group">
+            <label>Judul</label>
+            <input type="text" name="title" required placeholder="Masukkan judul todo">
+        </div>
+       
+        <div class="form-group">
+            <label>Deskripsi</label>
+            <textarea name="description" placeholder="Masukkan deskripsi (opsional)"></textarea>
+        </div>
 
-    <br>
-    <a href="index.php">← Kembali</a>
 
+        <button type="submit" class="btn btn-primary">Simpan Todo</button>
+    </form>
+</div>
+<script src="js/app.js"></script>
+<script>
+    validateForm("createTodoForm");
+</script>
 </body>
 </html>
+
