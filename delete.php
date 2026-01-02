@@ -1,16 +1,3 @@
-<?php
-require 'config/configuration.php';
-require 'class/todo.php';
-
-if (isset($_GET['id'])) {
-    $todo = new Todo();
-    $todo->delete($_GET['id']);
-}
-
-header("Location: index.php");
-exit;
-?>
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -21,13 +8,18 @@ exit;
 </head>
 <body>
 
-    <h2>Hapus ToDo</h2>
 
-    <p>Apakah kamu yakin ingin menghapus ToDo ini?</p>
+<div class="delete-box">
+    <h2>⚠️ Delete Todo</h2>
+    <p>Are you sure you want to delete:</p>
+    <strong><?= htmlspecialchars($data['title']) ?></strong>
 
-    <button>Ya, Hapus</button>
-    <br><br>
-    <a href="index.php">Batal</a>
 
+    <form method="POST">
+        <input type="hidden" name="id" value="<?= $data['id'] ?>">
+        <button type="submit" class="btn btn-danger" onclick="return confirmDelete()">Yes, Delete</button>
+        <a href="index.php" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+<script src="js/app.js"></script>
 </body>
-</html>
