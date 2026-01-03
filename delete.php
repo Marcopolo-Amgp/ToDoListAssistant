@@ -1,3 +1,25 @@
+<?php
+require 'config/configuration.php';
+require 'class/todo.php';
+
+
+if (!isset($_GET['id'])) {
+    header("Location: index.php");
+    exit;
+}
+
+
+$todo = new Todo();
+$data = $todo->getById($_GET['id']);
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $todo->delete($_POST['id']);
+    header("Location: index.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -13,7 +35,6 @@
     <h2>⚠️ Delete Todo</h2>
     <p>Are you sure you want to delete:</p>
     <strong><?= htmlspecialchars($data['title']) ?></strong>
-
 
     <form method="POST">
         <input type="hidden" name="id" value="<?= $data['id'] ?>">
