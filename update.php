@@ -1,3 +1,32 @@
+<?php
+require 'config/configuration.php';
+require 'class/todo.php';
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: auth/login.php");
+    exit;
+}
+
+
+$todo = new Todo();
+$data = $todo->getById($_GET['id']);
+
+if (!isset($_GET['id'])){
+    header("Location: index.php");
+    exit;
+}
+
+if (isset($_POST['submit'])) {
+    $result = $todo->update($_POST, $_SESSION['user_id']);
+    if ($result){
+    header("Location: index.php");
+    exit;
+    } else {
+        echo "update failed";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +43,7 @@
     </div>
 
 
-    <form method="POST" onsubmit="return validateTodo()">
+    <form method="POST">
         <input type="hidden" name="id" value="<?= $data['id'] ?>">
        
         <div class="form-group">
@@ -39,14 +68,9 @@
         </div>
 
 
-        <button type="submit" name="submit" class="btn btn-primary">
-            Update Todo
-        </button>
+        <button type="submit" name="submit" class="btn btn-primary">Update Todo</button>
     </form>
 </div>
-<script src="js/app.js"></script>
-<script>
-    validateForm("updateTodoForm");
-</script>
+<script src="../js/app.js"></script>
 </body>
 </html>
