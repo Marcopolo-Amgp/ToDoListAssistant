@@ -1,3 +1,22 @@
+<?php
+require 'config/configuration.php';
+require 'class/todo.php';
+
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: auth/login.php");
+    exit;
+}
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $todo = new Todo();
+    $todo->create($_POST, $_SESSION['user_id']);
+    header("Location: index.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -15,7 +34,7 @@
     </div>
 
 
-    <form method="POST" onsubmit="return validateTodo()">
+    <form method="POST" data-lock-submit onsubmit="return validateTodo()">
         <div class="form-group">
             <label>Judul</label>
             <input type="text" name="title" required placeholder="Masukkan judul todo">
@@ -31,9 +50,6 @@
     </form>
 </div>
 <script src="js/app.js"></script>
-<script>
-    validateForm("createTodoForm");
-</script>
 </body>
 </html>
 

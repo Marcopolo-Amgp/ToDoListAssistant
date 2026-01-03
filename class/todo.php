@@ -43,17 +43,18 @@ class Todo extends Database {
     }
 
     /* UPDATE TODO */
-    public function update($data) {
+    public function update($data, $userID) {
         $stmt = $this->db->prepare(
             "UPDATE todo
              SET title = :title,
                  description = :description,
                  status = :status
-             WHERE id = :id"
+             WHERE id = :id and user_id = :user_id"
         );
 
         return $stmt->execute([
             'id'          => $data['id'],
+            'user_id'     => $userID,  
             'title'       => $data['title'],
             'description' => $data['description'],
             'status'      => $data['status']
