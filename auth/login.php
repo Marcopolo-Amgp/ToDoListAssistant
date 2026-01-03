@@ -1,3 +1,30 @@
+<?php
+require_once __DIR__ . '/../config/configuration.php';
+require_once __DIR__ . '/../class/user.php';
+
+
+if (isset($_SESSION['user_id'])) {
+    header("Location: ../index.php");
+    exit;
+}
+
+
+$error = '';
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $user = new User();
+
+
+    if ($user->login($_POST)) {
+        header("Location: ../index.php");
+        exit;
+    } else {
+        $error = "Email or password is incorrect!";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
