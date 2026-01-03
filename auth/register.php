@@ -1,3 +1,33 @@
+<?php
+require_once '../config/configuration.php';
+require_once '../class/user.php';
+
+
+$user = new User();
+$error = '';
+$success = '';
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (
+        empty($_POST['username']) ||
+        empty($_POST['email']) ||
+        empty($_POST['password'])
+    ) {
+        $error = "All fields are required!";
+    } else {
+        $result = $user->register($_POST);
+
+
+        if ($result === true) {
+            $success = "Register successful. Please login.";
+        } else {
+            $error = $result;
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
