@@ -50,7 +50,7 @@ Dengan beberapa bahasa yaitu :
 - HTML
 - CSS
 - JavaScript
-
+---
 
 ## 📌 Hasil Pengembangan
 ### 🔐 1. Modul Autentikasi (Auth)
