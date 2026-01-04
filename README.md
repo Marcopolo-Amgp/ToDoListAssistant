@@ -10,7 +10,6 @@ Aplikasi ini menyediakan fitur utama **Create, Read, Update, dan Delete (CRUD)**
 
 Project ini dikembangkan sebagai bagian dari tugas perkuliahan dengan tujuan melatih pemahaman konsep **pengembangan sistem backend**, integrasi frontend–backend, serta penggunaan **version control (Git & GitHub)** secara kolaboratif.
 
----
 
 ## 🚀 Fitur Utama
 - ➕ Menambahkan tugas baru  
@@ -52,7 +51,6 @@ Dengan beberapa bahasa yaitu :
 - CSS
 - JavaScript
 
----
 
 ## 📌 Hasil Pengembangan
 ### 🔐 1. Modul Autentikasi (Auth)
@@ -156,9 +154,157 @@ Modul autentikasi ditempatkan pada folder `auth/` dan berfungsi untuk mengelola 
     - Pull Request digunakan untuk merge ke `main`
     - Sinkronisasi dilakukan menggunakan `git pull origin main`
 
----
 
 ## 📁 Struktur Folder
 Berikut adalah struktur folder pada project **`Todo List Assistant`** beserta penjelasannya:
 
+<img src="images/struktur-file.png" width="175">
 
+*Gambar 1. Struktur File Project*
+
+```todolistassistant/
+├── auth/
+│ ├── login.php
+│ ├── logout.php
+│ └── register.php
+│
+├── class/
+│ ├── database.php
+│ ├── todo.php
+│ └── user.php
+│
+├── config/
+│ └── configuration.php
+│
+├── css/
+│ └── style.css
+│ 
+├── image/
+│ └── struktur-file.png
+│ 
+├── js/
+│ └── app.js
+│
+├── create.php
+├── update.php
+├── delete.php
+├── index.php
+├── schema.sql
+└── README.md
+```
+
+
+### 📂 Penjelasan Struktur
+
+#### 🔐 `auth/`
+Folder yang menangani **autentikasi pengguna**:
+- `login.php` → Halaman dan proses login user
+- `logout.php` → Proses logout dan penghancuran session
+- `register.php` → Halaman pendaftaran akun baru
+
+#### 🧠 `class/`
+Berisi **class PHP berbasis OOP** sebagai logic backend:
+- `database.php` → Class koneksi database (PDO)
+- `user.php` → Logic user (login, register, logout)
+- `todo.php` → Logic CRUD Todo List
+
+#### ⚙️ `config/`
+- `configuration.php` → Konfigurasi utama aplikasi (session, koneksi database, dll)
+
+#### 🎨 `css/`
+- `style.css` → Styling global untuk seluruh halaman aplikasi
+
+#### 📷 `image/`
+- `struktur-file.png` → Gambar / Screenshot struktur project backend
+
+#### ⚡ `js/`
+- `app.js` → JavaScript untuk interaksi UI (alert auto close, confirm delete, validasi UX, dll)
+
+#### 📄 File Utama Aplikasi
+- `index.php` → Halaman utama (list todo berdasarkan user)
+- `create.php` → Halaman tambah todo
+- `update.php` → Halaman edit todo
+- `delete.php` → Proses & konfirmasi hapus todo
+
+#### 🗄️ Database
+- `schema.sql` → Struktur database (tabel users & todo)
+
+#### 📘 Dokumentasi
+- `README.md` → Dokumentasi project
+
+
+
+## 🚀 Cara Instalasi dan Menjalankan Aplikasi
+Panduan berikut menjelaskan langkah-langkah untuk menjalankan aplikasi **`Todo List Assistant`** di lingkungan lokal.
+
+---
+
+### 📌 1. Prasyarat (Requirements)
+Pastikan perangkat kamu sudah terpasang:
+
+- PHP ≥ 8.0
+- MySQL Workbench / MariaDB 
+- Web Server (disarankan menggunakan XAMPP / Laragon)
+- Git
+- Browser (Chrome, Firefox, dll)
+
+> ⚠️ Aplikasi dijalankan menggunakan **`PHP Built-in Web Server`**
+---
+
+### 📥 Clone Repository
+
+Jika project diambil dari GitHub:
+
+```
+git clone https://github.com/Marcopolo-Amgp/ToDoListAssistant.git
+
+cd ToDoListAssistant
+```
+> Atau bisa juga langsung **donwload ZIP** nya dari github lalu https://github.com/Marcopolo-Amgp/ToDoListAssistant.git lalu extract file.
+
+---
+### 🗄️ Setup Database
+1. Buka MySQL Workbench
+2. Jalankan MySQL Server
+3. Buat database dan tabel dengan menjalankan file berikut: `schema.sql`, atau copy-paste isi dari `schema.sql` ke MySQL Workbech lalu **Execute**
+
+> **❗Pastikan database berhasil dibuat**
+---
+
+### ⚙️ Konfigurasi Database
+Buka file:
+```
+config/configuration.php
+```
+Sesuaikan konfigurasi koneksi database:
+```
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+define('DB_NAME', 'todo_list');
+```
+Sesuaikan `DB_USER` dan `DB_PASS` dengan konfigurasi MySQL kamu.
+
+---
+
+### ▶️ Menjalankan Aplikasi (PHP Built-in Server)
+Masuk ke folder root project, lalu jalankan perintah:
+```
+php -S localhost:8000
+```
+Jika berhasil, akan muncul output seperti:
+```
+PHP 8.x Development Server started at http://localhost:8000
+```
+---
+
+### 🌐 Akses Aplikasi
+Buka browser dan akses:
+``` 
+http://localhost:8000 
+```
+Secara default:
+- User akan diarahkan ke halaman Login
+- Jika belum punya akun, klik Register
+---
+# ✅ Aplikasi Siap Digunakan
